@@ -35,7 +35,7 @@ public class CustomerDB {
             return null;
         }
         for(Customer customer:customerList){
-            if(customer.getName().equals(name.toLowerCase())){
+            if(customer.getName().toLowerCase().equals(name)){
                 return customer;
             }
         }
