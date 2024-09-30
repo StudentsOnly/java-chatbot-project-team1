@@ -10,7 +10,8 @@ public class ChatBotRunner {
         topics.put("3", new BillingTopic());
 
         // Initialize and start chatbot
-        CustomerSupportChatBot chatBot = new CustomerSupportChatBot(topics);
+        CustomerDB customers = new CustomerDB();
+        CustomerSupportChatBot chatBot = new CustomerSupportChatBot(topics, customers);
         chatBot.startChat();
     }
 }
