@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,9 +27,6 @@ public class Customer {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
     public List<Order> getOrderList() {
         return orderList;
@@ -56,5 +54,4 @@ public class Customer {
         //    System.out.println("The order " + id + " is not found");
         return false;
     }
-
 }

@@ -1,0 +1,94 @@
+@startuml
+
+package "Customer Support Chatbot" {
+    class CustomerDB{
+        - customerList: List<Customer>
+        + getCustomerById(Id: integer): Customer
+    }
+
+    class Customer {
+        - id: Integer
+        - name: String
+        - email: String
+        - orderList: List<Order>
+        + Customer(name: String, email: String)
+        + getName(): String
+        + getEmail(): String
+        + getOrderList(): List<Order>
+        + getOrderById(orderId: Integer): Order
+        - returnOrderById(orderId: Integer): boolean
+    }
+
+  enum Status {
+    PLACED
+    OUT_FOR_DELIVERY
+    RETURNED
+    DELIVERED
+  }
+
+    class Order {
+        - orderId: Integer
+        - status: Status
+        + Order(orderId: String, status: String)
+        + getOrderId(): String
+        + getStatus(): Status
+        + setStatus(status: String): void
+    }
+
+    interface Topic {
+        - topicName: String
+        - predefinedQuestions: Map<String, String>
+        + getTopicName(): String
+        + showPredefinedQuestions(chatBot: CustomerSupportChatBot): void
+        + getAnswer(question: String): String
+    }
+
+    class OrderTrackingTopic {
+        + OrderTrackingTopic()
+        + showPredefinedQuestions(chatBot: CustomerSupportChatBot): void
+        + getAnswer(question: String): String
+    }
+
+    class ProductInformationTopic {
+        + ProductInformationTopic()
+        + showPredefinedQuestions(chatBot: CustomerSupportChatBot): void
+        + getAnswer(question: String): String
+    }
+
+    class BillingTopic {
+        + BillingTopic()
+        + showPredefinedQuestions(chatBot: CustomerSupportChatBot): void
+        + getAnswer(question: String): String
+    }
+
+    class CustomerSupportChatBot {
+        - topics: Map<String, Topic>
+        - currentTopic: Topic
+        - scanner: Scanner
+        - currentCustomer: Customer
+        - customersList: CustomerDB
+        - order: Order
+        + CustomerSupportChatBot(topics: Map<String, Topic>, customer: Customer, order: Order)
+        + startChat(): void
+        - showTopics(): void
+        - handleTopicSelection(input: String): void
+        - handleQuery(input: String): void
+        - displayMessage(message: String): void
+        - getUserInput(): String
+    }
+
+    class ChatBotRunner {
+        + main(String[] args): void
+    }
+
+    Order ->  Status
+    CustomerSupportChatBot --> "1" CustomerDB
+    CustomerSupportChatBot --> "1" Customer
+    CustomerSupportChatBot --> "1" Order
+    CustomerSupportChatBot --> "0..*" Topic
+    Topic <|-- OrderTrackingTopic
+    Topic <|-- ProductInformationTopic
+    Topic <|-- BillingTopic
+}
+
+@enduml
