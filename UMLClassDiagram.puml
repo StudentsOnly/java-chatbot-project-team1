@@ -5,6 +5,8 @@ package "Customer Support Chatbot" {
         - customerList: List<Customer>
         + getCustomerById(Id: integer): Customer
         + deleteCustomer(customer: Customer) : void
+        + getCustomerByName(name: String): Customer
+        + addCustomer(customer: Customer): boolean
     }
 
     class Customer {
