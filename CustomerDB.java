@@ -25,6 +25,19 @@ public class CustomerDB {
         //    System.out.println("Customer with id" + id + " not found.");
         return null;
     }
+    public Customer getCustomerByName(String name){
+        if(customerList.isEmpty()){
+            //    System.out.println("The list of customers is empty");
+            return null;
+        }
+        for(Customer customer:customerList){
+            if(customer.getName().equals(name)){
+                return customer;
+            }
+        }
+        //    System.out.println("Customer with name'" + name + "' not found.");
+        return null;
+    }
 
     public boolean addCustomer(Customer customer){
         return customerList.add(customer);
