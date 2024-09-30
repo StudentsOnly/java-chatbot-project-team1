@@ -6,6 +6,10 @@ public class CustomerDB {
 
     public CustomerDB(){
         this.customerList = new ArrayList<>();
+        addCustomer(new Customer("John", "john.schwarz@gmail.com"));
+        addCustomer(new Customer("Klara", "klara.wolf@gmail.com"));
+        addCustomer(new Customer("Jessica", "jessica.bill@gmail.com"));
+        addCustomer(new Customer("Tobias", "tobias.weiz@gmail.com"));
     }
 
     public List<Customer> getCustomerList(){
